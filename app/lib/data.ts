@@ -216,3 +216,23 @@ export async function fetchFilteredCustomers(query: string) {
     throw new Error('Failed to fetch customer table.');
   }
 }
+
+export async function fetchInvoicesCount() {
+  try {
+    const data = await sql`SELECT COUNT(*) FROM invoices`;
+    return Number(data[0].count);
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch total number of invoices.');
+  }
+}
+
+export async function fetchCustomersCount() {
+  try {
+    const data = await sql`SELECT COUNT(*) FROM customers`;
+    return Number(data[0].count);
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch total number of customers.');
+  }
+}
